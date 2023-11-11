@@ -1,5 +1,6 @@
 from django.db import models
 from smartapp.choices import DEVICE_STATE
+from utils.helpers import get_substation_load
 
 
 class Substation(models.Model):
@@ -11,18 +12,32 @@ class Substation(models.Model):
     def __str__(self):
         return self.code
 
+    def get_load(self):
+        load = int((get_substation_load(self.code)/self.max_power)*100)  # In percent
+        return load
+
     class Meta:
         verbose_name = "Substation"
         verbose_name_plural = "Substations"
 
 
 class House(models.Model):
-    substation = models.ForeignKey(verbose_name="Substation", to="Substation", on_delete=models.SET_NULL, null=True)
+    @staticmethod
+    def default_substation():
+        substation = Substation.objects.order_by(
+            "latitude", "longitude", "house__latitude", "house__longitude").first()
+        if substation:
+            return substation.pk
+        return None
+
+    substation = models.ForeignKey(
+        verbose_name="Substation", to="Substation", default=default_substation,
+        on_delete=models.CASCADE)
     name = models.CharField(verbose_name="Name", max_length=15)
     address = models.CharField(verbose_name="Address", max_length=30)
     latitude = models.DecimalField(verbose_name="Latitude", max_digits=10, decimal_places=8, default=0)
     longitude = models.DecimalField(verbose_name="Longitude", max_digits=11, decimal_places=8, default=0)
-    user = models.ForeignKey(verbose_name="User", to='management.User', on_delete=models.CASCADE)
+    user = models.ForeignKey(verbose_name="User", related_name="house", to='management.User', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

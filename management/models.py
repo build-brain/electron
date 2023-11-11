@@ -46,6 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(verbose_name="Active", default=False)
     is_staff = models.BooleanField(verbose_name="Staff", default=False)
     registered_at = models.DateTimeField(verbose_name="Date of registered", auto_now_add=True)
+    balance = models.DecimalField(verbose_name="Balance", max_digits=10, decimal_places=8, default=0)
 
     USERNAME_FIELD = "phone_number"
 
@@ -70,7 +71,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def verify_otp(self, otp):
         if not self.is_active and self.otp == otp and self.otp_expiry and datetime.now() < self.otp_expiry:
-            print("active")
             self.is_active = True
             self.otp_expiry = None
             self.max_otp_try = settings.MAX_OTP_TRY

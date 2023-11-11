@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from django.conf import settings
 from management.models import *
 
 
@@ -13,26 +12,18 @@ class UserSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(
         write_only=True,
         min_length=settings.MIN_PASSWORD_LENGTH,
-        error_messages={
-            "min_length": "Password must be longer than {} characters".format(
-                settings.MIN_PASSWORD_LENGTH
-            )
-        },
+        error_messages={"min_length": f"Password must be longer than {settings.MIN_PASSWORD_LENGTH} characters"},
     )
     password2 = serializers.CharField(
         write_only=True,
         min_length=settings.MIN_PASSWORD_LENGTH,
-        error_messages={
-            "min_length": "Password must be longer than {} characters".format(
-                settings.MIN_PASSWORD_LENGTH
-            )
-        },
+        error_messages={"min_length": f"Password must be longer than {settings.MIN_PASSWORD_LENGTH} characters"},
     )
 
     class Meta:
         model = User
-        fields = ("id", "phone_number", "first_name", "last_name", "password1", "password2")
-        read_only_fields = ("id",)
+        fields = ("id", "phone_number", "first_name", "last_name", "balance", "password1", "password2")
+        read_only_fields = ("id", "balance")
 
     def validate(self, data):
         """

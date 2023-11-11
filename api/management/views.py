@@ -2,6 +2,8 @@ from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+
+from smartapp.models import House, Substation
 from .serializers import *
 
 
@@ -54,6 +56,13 @@ class UserViewSet(viewsets.ModelViewSet):
 
         except Exception as ex:
             return Response({"message": str(ex)}, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(url_path="substation-load", detail=False, methods=["GET"])
+    def get_my_substation_load(self, request):
+        substation = Substation.objects.filter(house__user=request.user).first()
+        if substation:
+            return substation.get_load()
+        return None
 
 
 class PanelViewSet(viewsets.ReadOnlyModelViewSet):

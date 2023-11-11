@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'django_filters',
     'djoser',
     'management',
-    'smartapp'
+    'smartapp',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -91,6 +92,7 @@ TEMPLATES = [
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
 
@@ -104,6 +106,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ],
     'COERCE_DECIMAL_TO_STRING': False
+}
+
+DJOSER = {
+    'SERIALIZERS': {
+        'current_user': 'api.management.serializers.UserSerializer',
+    },
 }
 
 WSGI_APPLICATION = 'core.wsgi.application'
