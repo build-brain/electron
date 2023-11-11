@@ -14,7 +14,7 @@ class UserManager(BaseUserManager):
 
     def create_user(self, phone_number, password=None):
         if not phone_number:
-            raise ValueError("Users must have a phone_number")
+            raise ValueError("Users must have a phone number")
 
         user = self.model(phone_number=phone_number)
         user.set_password(password)
