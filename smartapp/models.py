@@ -22,8 +22,8 @@ class Substation(models.Model):
 
 
 class House(models.Model):
-    def default_substation(self):
-        print(self.pk)
+    @staticmethod
+    def default_substation():
         substation = Substation.objects.order_by(
             "latitude", "longitude", "house__latitude", "house__longitude").first()
         if substation:
