@@ -38,7 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(verbose_name="Name", max_length=20, null=True, blank=True)
     last_name = models.CharField(verbose_name="Surname", max_length=20, null=True, blank=True)
 
-    otp = models.CharField(max_length=6)
+    otp = models.IntegerField(verbose_name="OTP")
     otp_expiry = models.DateTimeField(blank=True, null=True)
     max_otp_try = models.IntegerField(default=settings.MAX_OTP_TRY)
     otp_max_out = models.DateTimeField(blank=True, null=True)
@@ -70,6 +70,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def verify_otp(self, otp):
         if not self.is_active and self.otp == otp and self.otp_expiry and datetime.now() < self.otp_expiry:
+            print("active")
             self.is_active = True
             self.otp_expiry = None
             self.max_otp_try = settings.MAX_OTP_TRY
