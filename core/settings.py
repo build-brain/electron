@@ -31,12 +31,12 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-^wwd8m_3$6$g9_tm-_g1u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", 1))
 
-ALLOWED_HOSTS = [] #os.environ.get("ALLOWED_HOSTS", "127.0.0.1").split(" ")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1").split(" ")
 
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURE_SSL_REDIRECT = bool(os.environ.get("SECURE_SSL_REDIRECT", 0))
-# SESSION_COOKIE_SECURE = bool(os.environ.get("SESSION_COOKIE_SECURE", 0))
-# CSRF_COOKIE_SECURE = bool(os.environ.get("CSRF_COOKIE_SECURE", 0))
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = bool(os.environ.get("SECURE_SSL_REDIRECT", 0))
+SESSION_COOKIE_SECURE = bool(os.environ.get("SESSION_COOKIE_SECURE", 0))
+CSRF_COOKIE_SECURE = bool(os.environ.get("CSRF_COOKIE_SECURE", 0))
 
 
 # Application definition
