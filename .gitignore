@@ -1,0 +1,131 @@
+/windows/
+/linux/
+/macos/
+/test/
+/web/
+analysis_options.yaml
+.metadata
+/build/
+
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+
+
+
+
+
+# miscellaneous
+*.class
+*.lock
+*.log
+*.pyc
+*.swp
+.ds_store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# intellij related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# visual studio code related
+.vscode/
+
+# flutter/dart/pub related
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.packages
+.pub-cache/
+.pub/
+build/
+
+# android related
+**/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/generatedpluginregistrant.java
+
+# ios/xcode related
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/*sync/
+**/ios/**/.sconsign.dblite
+**/ios/**/.tags*
+**/ios/**/.vagrant/
+**/ios/**/deriveddata/
+**/ios/**/icon?
+**/ios/**/pods/
+**/ios/**/.symlinks/
+**/ios/**/profile
+**/ios/**/xcuserdata
+**/ios/.generated/
+**/ios/flutter/app.framework
+**/ios/flutter/flutter.framework
+**/ios/flutter/generated.xcconfig
+**/ios/flutter/app.flx
+**/ios/flutter/app.zip
+**/ios/flutter/flutter_assets/
+**/ios/servicedefinitions.json
+**/ios/runner/generatedpluginregistrant.*
+
+# exceptions to above rules.
+!**/ios/**/default.mode1v3
+!**/ios/**/default.mode2v3
+!**/ios/**/default.pbxuser
+!**/ios/**/default.perspectivev3
+!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
