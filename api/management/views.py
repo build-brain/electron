@@ -19,7 +19,7 @@ class UserViewSet(viewsets.ModelViewSet):
             self.permission_classes = []
         return super(UserViewSet, self).get_permissions()
 
-    @action(detail=True, methods=["PATCH"])
+    @action(url_path="verify-otp", detail=False, methods=["PATCH"])
     def verify_otp(self, request, pk=None):
         try:
             instance = self.get_object()
@@ -32,7 +32,7 @@ class UserViewSet(viewsets.ModelViewSet):
         except Exception as e:
             return Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-    @action(detail=True, methods=["PATCH"])
+    @action(url_path="regenerate-otp", detail=False, methods=["PATCH"])
     def regenerate_otp(self, request, pk=None):
         """ Regenerate OTP for the given user and send it to the user. """
         try:
