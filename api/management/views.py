@@ -11,11 +11,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
     def get_permissions(self):
-        if self.action in [
-            "reset_password"
-            "verify_otp",
-            "regenerate_otp"
-        ]:
+        if self.action == "reset_password" or "verify_otp" or "regenerate_otp":
             self.permission_classes = []
         return super(UserViewSet, self).get_permissions()
 
