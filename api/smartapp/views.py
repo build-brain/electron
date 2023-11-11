@@ -2,7 +2,19 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from api.smartapp.serializers import *
-from smartapp.models import *
+
+
+class SubstationViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = Substation.objects.all()
+    serializer_class = SubstationSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.request.user.is_superuser:
+            return queryset
+
+        return queryset.filter(user=self.request.user)
 
 
 class HouseViewSet(viewsets.ModelViewSet):

@@ -58,3 +58,19 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.set_password(str(otp))
         self.save()
         return send_otp(self.phone_number, otp)
+
+
+class Panel(models.Model):
+    name = models.CharField(verbose_name="Name", max_length=100)
+    power = models.IntegerField(verbose_name="Power", default=0, help_text="In kW")
+    annual_productivity = models.FloatField(verbose_name="Annual productivity", default=0, help_text="In mW")
+    guarantee_period = models.IntegerField(verbose_name="Guarantee period", default=0, help_text="In year")
+    price = models.DecimalField(verbose_name="Price", default=0, max_digits=12, decimal_places=3)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Panel"
+        verbose_name_plural = "Panels"
+

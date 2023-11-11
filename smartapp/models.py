@@ -2,7 +2,22 @@ from django.db import models
 from smartapp.choices import DEVICE_STATE
 
 
+class Substation(models.Model):
+    code = models.CharField(verbose_name="CODE", max_length=10, unique=True)
+    latitude = models.DecimalField(verbose_name="Latitude", max_digits=10, decimal_places=8, default=0)
+    longitude = models.DecimalField(verbose_name="Longitude", max_digits=11, decimal_places=8, default=0)
+    max_power = models.IntegerField(verbose_name="Max Power", help_text="In KW", default=0)
+
+    def __str__(self):
+        return self.code
+
+    class Meta:
+        verbose_name = "Substation"
+        verbose_name_plural = "Substations"
+
+
 class House(models.Model):
+    substation = models.ForeignKey(verbose_name="Substation", to="Substation", on_delete=models.SET_NULL, null=True)
     name = models.CharField(verbose_name="Name", max_length=15)
     address = models.CharField(verbose_name="Address", max_length=30)
     latitude = models.DecimalField(verbose_name="Latitude", max_digits=10, decimal_places=8, default=0)

@@ -2,8 +2,7 @@ from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from management.models import User
-from .serializers import UserSerializer
+from .serializers import *
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -29,3 +28,9 @@ class UserViewSet(viewsets.ModelViewSet):
 
         except Exception as ex:
             return Response({"message": str(ex)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PanelViewSet(viewsets.ReadOnlyModelViewSet):
+    # permission_classes = [IsAuthenticated]
+    queryset = Panel.objects.all()
+    serializer_class = PanelSerializer

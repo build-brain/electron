@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.conf import settings
-from management.models import User
+from management.models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -48,3 +48,9 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data["password1"])
         user.save()
         return user
+
+
+class PanelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Panel
+        fields = "__all__"
