@@ -48,7 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     otp = models.CharField(max_length=6)
     otp_expiry = models.DateTimeField(blank=True, null=True)
-    max_otp_try = models.IntegerField(max_length=2, default=settings.MAX_OTP_TRY)
+    max_otp_try = models.IntegerField(default=settings.MAX_OTP_TRY)
     otp_max_out = models.DateTimeField(blank=True, null=True)
 
     is_active = models.BooleanField(verbose_name="Active", default=False)
