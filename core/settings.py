@@ -20,7 +20,8 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 AUTH_USER_MODEL = "management.User"
-MIN_PASSWORD_LENGTH = 8
+MIN_PASSWORD_LENGTH = 5
+MAX_OTP_TRY = 3
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
