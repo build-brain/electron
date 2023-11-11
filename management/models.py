@@ -15,18 +15,10 @@ class UserManager(BaseUserManager):
     def create_user(self, phone_number, password=None):
         if not phone_number:
             raise ValueError("Users must have a phone_number")
-        otp = randint(1000, 9999)
-        otp_expiry = datetime.now() + timedelta(minutes=10)
 
-        user = self.model(
-            phone_number=phone_number,
-            otp=otp,
-            otp_expiry=otp_expiry,
-            max_otp_try=settings.MAX_OTP_TRY
-        )
+        user = self.model(phone_number=phone_number)
         user.set_password(password)
         user.save(using=self._db)
-        send_otp(phone_number, otp)
         return user
 
     def create_superuser(self, phone_number, password):
