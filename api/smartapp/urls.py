@@ -4,7 +4,7 @@ from .views import *
 
 router = routers.DefaultRouter()
 
-router.register(r'home', HomeViewSet)
+router.register(r'home', HouseViewSet)
 router.register(r'room', RoomViewSet)
 router.register(r'device', DeviceViewSet)
 router.register(r'room-type', RoomTypeViewSet)

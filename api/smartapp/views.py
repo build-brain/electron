@@ -5,10 +5,10 @@ from api.smartapp.serializers import *
 from smartapp.models import *
 
 
-class HomeViewSet(viewsets.ModelViewSet):
+class HouseViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Home.objects.all()
-    serializer_class = HomeSerializer
+    queryset = House.objects.all()
+    serializer_class = HouseSerializer
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -28,7 +28,7 @@ class RoomViewSet(viewsets.ModelViewSet):
         if self.request.user.is_superuser:
             return queryset
         
-        return queryset.filter(home__user=self.request.user)
+        return queryset.filter(house__user=self.request.user)
 
 
 class DeviceViewSet(viewsets.ModelViewSet):
@@ -41,7 +41,7 @@ class DeviceViewSet(viewsets.ModelViewSet):
         if self.request.user.is_superuser:
             return queryset
         
-        return queryset.filter(room__home__user=self.request.user)
+        return queryset.filter(room__house__user=self.request.user)
 
 
 class RoomTypeViewSet(viewsets.ModelViewSet):

@@ -3,12 +3,12 @@ from rest_framework import serializers
 from smartapp.models import *
 
 
-class HomeSerializer(serializers.ModelSerializer):
-    home_name = serializers.ReadOnlyField(source="home.__str__")
+class HouseSerializer(serializers.ModelSerializer):
+    house_name = serializers.ReadOnlyField(source="house.__str__")
     type_name = serializers.ReadOnlyField(source="type.__str__")
 
     class Meta:
-        model = Home
+        model = House
         fields = "__all__"
 
 
