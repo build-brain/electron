@@ -22,7 +22,7 @@ class UserViewSet(viewsets.ModelViewSet):
     @action(url_path="verify-otp", detail=False, methods=["PATCH"])
     def verify_otp(self, request, pk=None):
         try:
-            instance = self.get_object()
+            instance = self.queryset.get(phone_number=request.data.get("phone_number"))
             if instance.verify_otp(request.data.get("otp")):
                 return Response({"success": "Successfully verified the user."}, status=status.HTTP_200_OK)
 
@@ -36,7 +36,7 @@ class UserViewSet(viewsets.ModelViewSet):
     def regenerate_otp(self, request, pk=None):
         """ Regenerate OTP for the given user and send it to the user. """
         try:
-            instance = self.get_object()
+            instance = self.queryset.get(phone_number=request.data.get("phone_number"))
             if instance.regenerate_otp():
                 return Response({"success": "Successfully generate new OTP."}, status=status.HTTP_200_OK)
 
