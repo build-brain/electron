@@ -22,10 +22,12 @@ class Substation(models.Model):
 
 
 class House(models.Model):
-    @staticmethod
-    def default_substation():
-        return Substation.objects.order_by(
+    def default_substation(self):
+        substation = Substation.objects.order_by(
             "latitude", "longitude", "house__latitude", "house__longitude").first()
+        if substation:
+            return substation.pk
+        return None
 
     substation = models.ForeignKey(
         verbose_name="Substation", to="Substation", default=default_substation,
