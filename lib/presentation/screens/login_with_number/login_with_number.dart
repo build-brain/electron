@@ -1,6 +1,7 @@
 import 'package:electron/presentation/screens/verify/verify_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginWithNumberScreen extends StatelessWidget {
   const LoginWithNumberScreen();
@@ -81,12 +82,13 @@ class LoginWithNumberScreen extends StatelessWidget {
                 tag: 'button',
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                        builder: (context) => const VerifyScreen(),
-                      ),
-                      (route) => false,
-                    );
+                    context.go('/verify_screen');
+                    // Navigator.of(context).pushAndRemoveUntil(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const VerifyScreen(),
+                    //   ),
+                    //   (route) => false,
+                    // );
                     // Navigator.of(context).push();
                   },
                   style: ButtonStyle(

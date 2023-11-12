@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:electron/presentation/utils/assets.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen();
@@ -47,12 +48,8 @@ class LoginScreen extends StatelessWidget {
                   tag: 'button',
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                          builder: (context) => const LoginWithNumberScreen(),
-                        ),
-                        (route) => false,
-                      );
+                      context.go('/login_with_number');
+                      // context
                       // Navigator.of(context).push();
                     },
                     style: ButtonStyle(

@@ -2,6 +2,7 @@ import 'package:electron/presentation/screens/root.dart';
 import 'package:electron/presentation/widgets/code_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class VerifyScreen extends StatelessWidget {
   const VerifyScreen({super.key});
@@ -30,26 +31,27 @@ class VerifyScreen extends StatelessWidget {
                 tag: 'button',
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                        transitionDuration: const Duration(milliseconds: 600),
-                        pageBuilder: (context, animation, secondaryAnimation) =>
-                            RootScreen(
-                          child: Container(),
-                        ),
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          var tween = Tween(begin: 0.0, end: 1.0).chain(
-                              CurveTween(curve: Curves.fastLinearToSlowEaseIn));
-                          return AnimatedOpacity(
-                            opacity: animation.drive(tween).value,
-                            curve: Curves.fastLinearToSlowEaseIn,
-                            duration: const Duration(seconds: 3),
-                            child: child,
-                          );
-                        },
-                      ),
-                    );
+                    // Navigator.of(context).push(
+                    //   PageRouteBuilder(
+                    //     transitionDuration: const Duration(milliseconds: 600),
+                    //     pageBuilder: (context, animation, secondaryAnimation) =>
+                    //         RootScreen(
+                    //       child: Container(),
+                    //     ),
+                    //     transitionsBuilder:
+                    //         (context, animation, secondaryAnimation, child) {
+                    //       var tween = Tween(begin: 0.0, end: 1.0).chain(
+                    //           CurveTween(curve: Curves.fastLinearToSlowEaseIn));
+                    //       return AnimatedOpacity(
+                    //         opacity: animation.drive(tween).value,
+                    //         curve: Curves.fastLinearToSlowEaseIn,
+                    //         duration: const Duration(seconds: 3),
+                    //         child: child,
+                    //       );
+                    //     },
+                    //   ),
+                    // );
+                    context.go('/dashboard');
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
