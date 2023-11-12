@@ -6,6 +6,7 @@ from django.conf import settings
 from random import randint
 import re
 
+from smartapp.models import Substation
 from .services.sender import send_otp, send_reset
 
 
@@ -103,6 +104,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.save()
         send_otp(self.phone_number, otp)
         return True
+
+    def substation_load(self):
+        substation = Substation.objects.filter(house__user__id=self.pk).first()
+        if substation:
+            return substation.get_load()
+        return None
 
 
 class Panel(models.Model):

@@ -59,10 +59,11 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(url_path="substation-load", detail=False, methods=["GET"])
     def get_my_substation_load(self, request):
-        substation = Substation.objects.filter(house__user=request.user).first()
-        if substation:
-            return substation.get_load()
-        return None
+        try:
+            return Response({"load": request.user.substation_load()}, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PanelViewSet(viewsets.ReadOnlyModelViewSet):

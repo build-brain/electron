@@ -17,6 +17,7 @@ class Substation(models.Model):
         return load
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = "Substation"
         verbose_name_plural = "Substations"
 
@@ -43,6 +44,7 @@ class House(models.Model):
         return self.name
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = "House"
         verbose_name_plural = "Houses"
 
@@ -56,6 +58,7 @@ class Room(models.Model):
         return self.name
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = "Room"
         verbose_name_plural = "Rooms"
 
@@ -69,6 +72,7 @@ class RoomType(models.Model):
         return self.name
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = "Room type"
         verbose_name_plural = "Room types"
 
@@ -83,6 +87,7 @@ class Device(models.Model):
         return self.name
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = "Device"
         verbose_name_plural = "Devices"
 
@@ -96,5 +101,6 @@ class DeviceType(models.Model):
         return self.name
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = "Device Type"
         verbose_name_plural = "Device types"
